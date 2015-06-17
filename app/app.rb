@@ -59,8 +59,8 @@ module L10n
 
     post '/github' do
       hook_data = JSON.parse(params[:payload], symbolize_names: true)
-      # We only care about the master branch
-      if hook_data[:ref] == 'refs/heads/master'
+      # We only care about the develop branch
+      if hook_data[:ref] == 'refs/heads/develop'
         github_repo_name = "#{hook_data[:repository][:owner][:name]}/#{hook_data[:repository][:name]}"
         github_repo = Strava::L10n::GitHubRepo.new(github_repo_name)
         transifex_project = github_repo.transifex_project
